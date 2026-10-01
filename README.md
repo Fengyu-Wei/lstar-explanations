@@ -115,6 +115,10 @@ The three experiment scripts write their CSV and PNG outputs to the **current wo
 
 The OpenML datasets download on first use into scikit-learn's cache; `climate` is by far the largest (d = 1558).
 
+## License
+
+Released under the [MIT License](LICENSE). This covers the contents of this repository — the scripts, the result tables and the figures as stored here. The published article itself carries the publisher's terms.
+
 ## Citing
 
 If you use this artifact, please cite the paper above. The release is tagged `v1.0.0`.
