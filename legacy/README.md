@@ -3,6 +3,9 @@
 This directory preserves the five scripts, ten CSV tables and two PNG figures
 previously stored at the repository root, including existing local revisions.
 The current KBS manuscript's independent-pool results are under `../experiments/`.
+Current experiment code is in `../src/`. Those scripts use the current protocols
+and results independently of this directory. The historical results here document
+the earlier experimental stage and are not inputs to the current GPU audits.
 
 The archived studies use five-fold cross-validation and training-fold rule
 precision. StandardScaler is fitted before the CV split in these scripts.

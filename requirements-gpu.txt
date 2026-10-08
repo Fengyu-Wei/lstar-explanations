@@ -1,7 +1,0 @@
-# Install AFTER requirements.txt in a separate GPU environment.
-# NumPy 2.5.3 replaces the CPU-run version to match the recorded GPU run.
-numpy==2.5.3
-cupy-cuda12x==14.0.1
-nvidia-cuda-runtime-cu12==12.4.127
-nvidia-cuda-nvrtc-cu12==12.4.127
-nvidia-cublas-cu12==12.4.5.8

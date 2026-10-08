@@ -22,7 +22,7 @@ experiments/
   reviewer-followup-gpu/      mass budget, localization and representation audits
 figures/                     three current experimental figures, PDF and PNG
 legacy/                      historical code, tables and figures
-requirements*.txt            CPU, tabular Anchors and CUDA dependencies
+requirements.txt             shared CPU dependencies; optional installs below
 reference-sha256.json         reference-data and figure checksums
 ```
 
@@ -30,6 +30,25 @@ Each experiment contains its dated protocol and final `results/` tables. Logs,
 Python environments, downloaded datasets, private editing notes, LaTeX caches and
 manuscript-rewriting scripts are excluded. The framework overview (Fig. 1) is a
 separate manuscript illustration; this package contains the experimental figures.
+
+## Current and historical experiments
+
+| Directory | Role |
+| --- | --- |
+| `src/` | Code that generates and analyzes the current experimental results |
+| `experiments/` | Current protocols and final results used by the KBS manuscript |
+| `legacy/` | Earlier exploratory code, training-fold measurements and historical figures |
+
+The current experiments revisit the earlier research questions with separate fit,
+calibration, reference and query pools, fit-only preprocessing, additional controls
+and independent audits. The historical scripts use training-fold rule precision
+and fit StandardScaler before CV splitting. Their tables belong to the earlier
+protocol and should be interpreted with those limitations.
+
+To reproduce the current paper, use `src/` and `experiments/`. The current scripts
+read their required results from `experiments/`; they do not depend on `legacy/`.
+The GPU follow-up depends on the four current CPU result families. `legacy/` is
+retained to preserve the earlier artifact and explain the experimental history.
 
 ## Quick verification: no extra dependencies or GPU
 
@@ -43,6 +62,8 @@ This standard-library-only command checks reference checksums, four-way split
 disjointness, method/query pairing, exact-region agreement, the GPU input hashes
 and recorded numerical cross-checks. It reads the archived evidence without
 changing it. It does not retrain models or prove formal statements.
+`reference-sha256.json` stores file fingerprints for checking that the supplied
+reference data and figures are intact.
 
 ## Install the recorded CPU environment
 
@@ -58,11 +79,16 @@ Activate it with `.venv\Scripts\Activate.ps1` in Windows PowerShell or
 
 ```sh
 python -m pip install -r requirements.txt
-python -m pip install --no-deps -r requirements-anchors.txt
 ```
 
-The second command matches the tabular-only Anchors setup used in the recorded
-run. Its NumPy/SciPy/scikit-learn dependencies come from `requirements.txt`; spaCy
+When rerunning the Anchors comparison, additionally install:
+
+```sh
+python -m pip install --no-deps anchor-exp==0.0.2.0 lime==0.2.0.1
+```
+
+This matches the tabular-only Anchors setup used in the recorded run. Its
+NumPy/SciPy/scikit-learn dependencies come from `requirements.txt`; spaCy
 and image-LIME dependencies are unused by these scripts. This installation is not
 intended to support every optional feature of the upstream Anchors/LIME packages.
 
@@ -105,11 +131,11 @@ Activate this environment as above, then install dependencies **sequentially**:
 
 ```sh
 python -m pip install -r requirements.txt
-python -m pip install -r requirements-gpu.txt
+python -m pip install numpy==2.5.3 cupy-cuda12x==14.0.1 nvidia-cuda-runtime-cu12==12.4.127 nvidia-cuda-nvrtc-cu12==12.4.127 nvidia-cublas-cu12==12.4.5.8
 python src/gpu_followup_audit.py
 ```
 
-The GPU requirements replace NumPy 2.5.2 with **2.5.3**, matching the recorded GPU
+The optional GPU installation replaces NumPy 2.5.2 with **2.5.3**, matching the recorded GPU
 run. The reference hardware was an RTX 4060 Laptop GPU with CuPy 14.0.1. Actual
 device, driver/runtime versions, precision and random seed are recorded in
 [runtime.json](experiments/reviewer-followup-gpu/results/runtime.json).
