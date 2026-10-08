@@ -108,18 +108,6 @@
     "figures/independent-crossmodel.pdf": "315ea04ed4e93a3d8bbc9355c9fd27fa698983dbff2f693dac37215dac68d114",
     "figures/independent-crossmodel.png": "3ad87cf655cb4483b34d1ef9bc6951d261e6ffaa3a9133354d802966bdc2bdf9",
     "figures/independent-utility.pdf": "6f2cb3338f0c91d25d127cd57e00ae21bf10fc807768d3c9d40df7fa5520c4fb",
-    "figures/independent-utility.png": "500cb1bd009ffab666f06da6a9ca7d617a1c82e37a4ad31d8d505fe63a596f71",
-    "legacy/figures/cross_model_H.png": "05a8b68b095744a4a3357786acffd0df13e253dea309fa04dd172aad683d5589",
-    "legacy/figures/shortening_vs_k.png": "1371bf1a943c25803cd1e61b6f4dc3fe340fa23dbec2fb62253df076e04f02c4",
-    "legacy/results/faithfulness_cv_results.csv": "3d5fd150ba6d0b6e89f0f99dc648f62943c205a821525c6e57572399192e4e7c",
-    "legacy/results/faithfulness_cv_stats.csv": "dfa228e284e3a23731c7c7ff0f9c6d50f4d1b82a66c6f5ba86e86cbc82b6032b",
-    "legacy/results/faithfulness_vs_k_cv.csv": "5bd4257bb20877c8630f69f4e1de25dd2ac39677c226ee6828cdca82cef19042",
-    "legacy/results/linear_faithfulness_coef_results.csv": "6959627283cb26a58ce464adb2d573292b3732ed75adc907faf323a2ae0d7648",
-    "legacy/results/linear_faithfulness_coef_stats.csv": "35d794876ea3ed31fc7094e820da14d22d163613094df250946dd832c41f8816",
-    "legacy/results/linear_faithfulness_results.csv": "bde2031f670ba6bae65374924395838ad073a372d4047683b81c616ef8eab84c",
-    "legacy/results/linear_faithfulness_stats.csv": "8f070bfe00cf13deae033ccf9326e9897ce387298ce3b16149b58e918b796454",
-    "legacy/results/mlp_scaled_curves.csv": "c8b54f6441804de623670acbf77350c4c0aeb06f29aed10cda7f52d8b10f301b",
-    "legacy/results/mlp_scaled_stats.csv": "517f1eb63a4b934386511c04ed3fe6ff8dce398745a4abe2f40b5d442722a489",
-    "legacy/results/mlp_scaled_summary.csv": "1e9a4ba23775222029db80e56a9427fe566f3f51677ed5b4a7a485d6f83d862c"
+    "figures/independent-utility.png": "500cb1bd009ffab666f06da6a9ca7d617a1c82e37a4ad31d8d505fe63a596f71"
   }
 }

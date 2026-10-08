@@ -7,7 +7,6 @@ Fengyu Wei and Di Zhang, manuscript prepared for *Knowledge-Based Systems*.
 This package contains the current independent-pool experiments and the post-review
 GPU audits, synchronized with the local manuscript on **2026-10-08**. Reference
 results are included so they can be inspected without training or downloading data.
-The earlier exploratory artifact is retained in [legacy/](legacy/README.md).
 
 ## Layout
 
@@ -21,7 +20,6 @@ experiments/
   matched-subset-audit/       minimum path-subset controls
   reviewer-followup-gpu/      mass budget, localization and representation audits
 figures/                     three current experimental figures, PDF and PNG
-legacy/                      historical code, tables and figures
 requirements.txt             shared CPU dependencies; optional installs below
 reference-sha256.json         reference-data and figure checksums
 ```
@@ -31,24 +29,19 @@ Python environments, downloaded datasets, private editing notes, LaTeX caches an
 manuscript-rewriting scripts are excluded. The framework overview (Fig. 1) is a
 separate manuscript illustration; this package contains the experimental figures.
 
-## Current and historical experiments
+## Code and results
 
 | Directory | Role |
 | --- | --- |
 | `src/` | Code that generates and analyzes the current experimental results |
 | `experiments/` | Current protocols and final results used by the KBS manuscript |
-| `legacy/` | Earlier exploratory code, training-fold measurements and historical figures |
 
-The current experiments revisit the earlier research questions with separate fit,
-calibration, reference and query pools, fit-only preprocessing, additional controls
-and independent audits. The historical scripts use training-fold rule precision
-and fit StandardScaler before CV splitting. Their tables belong to the earlier
-protocol and should be interpreted with those limitations.
+The current experiments use separate fit, calibration, reference and query pools,
+fit-only preprocessing, compression controls and independent audits.
 
 To reproduce the current paper, use `src/` and `experiments/`. The current scripts
-read their required results from `experiments/`; they do not depend on `legacy/`.
-The GPU follow-up depends on the four current CPU result families. `legacy/` is
-retained to preserve the earlier artifact and explain the experimental history.
+read their required results from `experiments/`. The GPU follow-up depends on the
+four current CPU result families.
 
 ## Quick verification: no extra dependencies or GPU
 
@@ -226,17 +219,18 @@ establishing human understanding or deployment value.
 
 During packaging, reference numerical tables and figures were copied without
 recomputation. Code changes remove external workspace dependencies and keep output
-paths within the package; historical exploratory results remain in `legacy/`.
+paths within the package.
 The original recorded GPU input hashes are preserved, including their Windows path
 separators; the verifier resolves them portably. Runtime and validation records
 describe the original runs, rather than a fresh run on the reader's computer.
 
-Packaging validation on 2026-10-08 used a standalone copy and the recorded local
-environments. It passed all 119 reference checksums, a deliberately corrupted-file
-negative control, the 416-subset exact verifier, cached CPU interval regeneration,
-current/historical plotting and a real GPU follow-up rerun. Regenerated GPU summary
-metrics and intervals matched the reference within 1e-12; the supplied reference
-files remained unchanged. This was a packaging check, not a new experimental design.
+Current verification covers 107 reference files. Packaging validation on 2026-10-08
+used a standalone copy and the recorded local environments. It passed a deliberately
+corrupted-file negative control, the 416-subset exact verifier, cached CPU interval
+regeneration, experimental plotting and a real GPU follow-up rerun. Regenerated GPU
+summary metrics and intervals matched the reference within 1e-12; the supplied
+current reference files remained unchanged. This was a packaging check, not a new
+experimental design.
 
 ## License and citation
 
