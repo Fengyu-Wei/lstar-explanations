@@ -20,7 +20,7 @@ results/
   matched-subset-audit/       minimum path-subset controls
   reviewer-followup-gpu/      mass budget, localization and representation audits
 requirements.txt             shared CPU dependencies; optional installs below
-reference-sha256.json         reference-data and figure checksums
+reference-sha256.json         reference-data and statistical-output checksums
 ```
 
 Each experiment contains its dated protocol and final `results/` tables. Logs,

@@ -1,7 +1,6 @@
 """Prespecified macro endpoints, paired hierarchical intervals, figures and audit report."""
 import json
 import platform
-from pathlib import Path
 import numpy as np
 import pandas as pd
 from scipy.stats import pearsonr,spearmanr
