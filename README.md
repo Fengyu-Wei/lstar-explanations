@@ -227,4 +227,6 @@ experimental design.
 
 The repository code is released under the [MIT License](LICENSE). Upstream
 dependencies and datasets retain their respective terms. Cite the manuscript
-title and authors above; no acceptance, DOI or new release tag is claimed here.
+title and authors above. Release metadata is supplied in `.zenodo.json` for
+automatic Zenodo archiving of GitHub releases. Cite an archived version using
+its version-specific DOI; a software DOI does not imply journal acceptance.
