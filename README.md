@@ -227,6 +227,10 @@ experimental design.
 
 The repository code is released under the [MIT License](LICENSE). Upstream
 dependencies and datasets retain their respective terms. Cite the manuscript
-title and authors above. Release metadata is supplied in `.zenodo.json` for
-automatic Zenodo archiving of GitHub releases. Cite an archived version using
-its version-specific DOI; a software DOI does not imply journal acceptance.
+title and authors above. The current archived artifact is
+[v1.1.0](https://github.com/Fengyu-Wei/lstar-explanations/releases/tag/v1.1.0),
+DOI [10.5281/zenodo.23239665](https://doi.org/10.5281/zenodo.23239665).
+Release metadata is supplied in `.zenodo.json` for automatic Zenodo archiving
+of GitHub releases. This version links to the earlier manually deposited
+artifact [10.5281/zenodo.23104637](https://doi.org/10.5281/zenodo.23104637).
+A software DOI does not imply journal acceptance.
