@@ -1,0 +1,11 @@
+# Preserve the exact bytes of reference evidence across Git checkouts.
+*.csv -text
+*.json -text
+*.pdf -text
+*.png -text
+# Portable source and documentation line endings.
+*.py text eol=lf
+*.md text eol=lf
+*.txt text eol=lf
+.gitignore text eol=lf
+.gitattributes text eol=lf

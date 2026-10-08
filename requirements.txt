@@ -1,11 +1,9 @@
-# Versions recorded for the archived runs (Python 3.14).
-# Newer releases should also work; these are the ones the result tables came from.
+# CPU reference runs: Python 3.14.3. See experiments/*/results/runtime.json.
 numpy==2.5.2
 pandas==3.0.3
 scikit-learn==1.9.0
 matplotlib==3.11.0
 scipy==1.18.0
-
-# xai_framework.py imports pytest at module level (it also ships the axiom tests),
-# so it is a runtime dependency, not just a test-time one.
-pytest
+threadpoolctl==3.6.0
+# Required by the archived framework module in legacy/code/.
+pytest==9.1.1

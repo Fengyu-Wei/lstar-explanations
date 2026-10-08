@@ -1,0 +1,216 @@
+[
+  {
+    "dataset": "breast_cancer",
+    "seed": 0,
+    "depth": 8,
+    "query_index": 8,
+    "class": 0,
+    "full_length": 3,
+    "predicates": [
+      [
+        "worst radius",
+        "<=",
+        17.039999961853027
+      ],
+      [
+        "worst concave points",
+        ">",
+        0.1423499956727028
+      ],
+      [
+        "mean concave points",
+        ">",
+        0.056004999205470085
+      ]
+    ],
+    "prefixes": [
+      {
+        "k": 0,
+        "support": 142,
+        "success": 53,
+        "q": 0.035211267605633804,
+        "precision": 0.3732394366197183,
+        "sibling_bad": [
+          0,
+          84,
+          5
+        ]
+      },
+      {
+        "k": 1,
+        "support": 96,
+        "success": 7,
+        "q": 0.052083333333333336,
+        "precision": 0.07291666666666667,
+        "sibling_bad": [
+          84,
+          5
+        ]
+      },
+      {
+        "k": 2,
+        "support": 10,
+        "success": 5,
+        "q": 0.5,
+        "precision": 0.5,
+        "sibling_bad": [
+          5
+        ]
+      },
+      {
+        "k": 3,
+        "support": 5,
+        "success": 5,
+        "q": 1.0,
+        "precision": 1.0,
+        "sibling_bad": []
+      }
+    ]
+  },
+  {
+    "dataset": "banknote",
+    "seed": 0,
+    "depth": 8,
+    "query_index": 283,
+    "class": 1,
+    "full_length": 7,
+    "predicates": [
+      [
+        "variance",
+        ">",
+        0.2974049896001816
+      ],
+      [
+        "curtosis",
+        ">",
+        -4.443400144577026
+      ],
+      [
+        "variance",
+        "<=",
+        1.566100001335144
+      ],
+      [
+        "curtosis",
+        ">",
+        -1.7387999892234802
+      ],
+      [
+        "entropy",
+        "<=",
+        0.8286399841308594
+      ],
+      [
+        "entropy",
+        ">",
+        0.27325499802827835
+      ],
+      [
+        "curtosis",
+        ">",
+        0.23875004053115845
+      ]
+    ],
+    "prefixes": [
+      {
+        "k": 0,
+        "support": 343,
+        "success": 193,
+        "q": 0.0058309037900874635,
+        "precision": 0.5626822157434402,
+        "sibling_bad": [
+          129,
+          9,
+          2,
+          6,
+          3,
+          0,
+          1
+        ]
+      },
+      {
+        "k": 1,
+        "support": 186,
+        "success": 165,
+        "q": 0.010752688172043012,
+        "precision": 0.8870967741935484,
+        "sibling_bad": [
+          9,
+          2,
+          6,
+          3,
+          0,
+          1
+        ]
+      },
+      {
+        "k": 2,
+        "support": 176,
+        "success": 164,
+        "q": 0.011363636363636364,
+        "precision": 0.9318181818181818,
+        "sibling_bad": [
+          2,
+          6,
+          3,
+          0,
+          1
+        ]
+      },
+      {
+        "k": 3,
+        "support": 51,
+        "success": 41,
+        "q": 0.0392156862745098,
+        "precision": 0.803921568627451,
+        "sibling_bad": [
+          6,
+          3,
+          0,
+          1
+        ]
+      },
+      {
+        "k": 4,
+        "support": 40,
+        "success": 36,
+        "q": 0.05,
+        "precision": 0.9,
+        "sibling_bad": [
+          3,
+          0,
+          1
+        ]
+      },
+      {
+        "k": 5,
+        "support": 37,
+        "success": 36,
+        "q": 0.05405405405405406,
+        "precision": 0.972972972972973,
+        "sibling_bad": [
+          0,
+          1
+        ]
+      },
+      {
+        "k": 6,
+        "support": 3,
+        "success": 2,
+        "q": 0.6666666666666666,
+        "precision": 0.6666666666666666,
+        "sibling_bad": [
+          1
+        ]
+      },
+      {
+        "k": 7,
+        "support": 2,
+        "success": 2,
+        "q": 1.0,
+        "precision": 1.0,
+        "sibling_bad": []
+      }
+    ]
+  }
+]

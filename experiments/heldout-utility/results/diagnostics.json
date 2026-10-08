@@ -1,0 +1,11 @@
+{
+  "queries": 4800,
+  "method_query_rows": 33600,
+  "tree_fits": 280,
+  "paired_adjacent_comparisons": 33170,
+  "precision_decreases": 2168,
+  "anchors_queries": 105,
+  "anchors_native_target_rate": 0.8857142857142857,
+  "platform": "Windows-11-10.0.26200-SP0",
+  "cpu": "Intel64 Family 6 Model 183 Stepping 1, GenuineIntel"
+}

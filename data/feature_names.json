@@ -1,0 +1,9 @@
+{
+  "banknote": [
+    "variance",
+    "skewness",
+    "curtosis",
+    "entropy"
+  ],
+  "source": "https://archive.ics.uci.edu/dataset/267/banknote+authentication"
+}

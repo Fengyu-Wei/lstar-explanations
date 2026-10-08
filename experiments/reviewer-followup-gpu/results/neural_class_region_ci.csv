@@ -1,0 +1,4 @@
+metric,mean,ci_lo,ci_hi,tasks_with_data,task_seed_cells
+precision,1.0,1.0,1.0,13,65
+coverage,0.5356890098778474,0.507686632542758,0.575942080388268,13,65
+evaluable,1.0,1.0,1.0,13,65

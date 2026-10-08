@@ -1,0 +1,8 @@
+{
+  "disjoint_split_checks": 140,
+  "matched_query_rules": 4800,
+  "per_query_rows": 33600,
+  "undefined_precision_preserved": true,
+  "exact_fidelity_checks": true,
+  "case_counts_match": true
+}

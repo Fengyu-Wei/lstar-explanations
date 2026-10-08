@@ -1,0 +1,3 @@
+metric,mean,ci_lo,ci_hi,tasks_with_data,task_seed_cells
+class_minus_cell_coverage,0.531177162406893,0.504172924132166,0.5687000089539997,13,65
+class_minus_cell_evaluable,0.8112908144487091,0.6630597969282179,0.934161832319727,13,65

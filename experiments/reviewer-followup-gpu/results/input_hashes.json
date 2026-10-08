@@ -1,0 +1,11 @@
+{
+  "experiments\\heldout-utility\\results\\paired_curves.csv": "82798c3929685d8a07199528f340fdec450235a9c379e417ff976d72173a2360",
+  "experiments\\heldout-utility\\results\\queries.csv": "4634d719f348c7b06fffb165cb45a84127e7bb08ae9aa7bda29315612c049ae0",
+  "experiments\\heldout-utility\\results\\fits.csv": "207d3b3d3332856cbec334c744450342180b0a6ecb4bfcc95c1dccd2f9a38f95",
+  "experiments\\heldout-utility\\results\\cases.json": "a15ac997a85a08a6df36fafb566201fce87b06705f56bfffe1e912e6d92fd126",
+  "data\\manifest.json": "705d5da7a8c22b389599ea1f433278e5b01e44a2056878abf1c89de5fd22a5e5",
+  "data\\splits.json": "755bc4bc5e9b86aacca027e4af14dcac272c93444435dc19b3602e2efca982ce",
+  "experiments\\crossmodel-robustness\\results\\queries.csv": "6804889e80406eca6e0982a5d3ff905cdd2126cfe6a96fcf158fcc6a0c0bdcb3",
+  "experiments\\exact-projection-audit\\results\\queries.csv": "a6376df6465535b2a9e5790ef658985ba21cb1f43ae9d98375d421cd9ea25b6c",
+  "experiments\\matched-subset-audit\\results\\queries.csv": "0bbf24b78be717f6f7c8717bbbe44b7a77c1dd39dde2fb42c45b8ce66d34fdcf"
+}

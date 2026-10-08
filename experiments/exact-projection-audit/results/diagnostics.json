@@ -1,0 +1,17 @@
+{
+  "fits": 205,
+  "projections": 3500,
+  "seconds": 22.977783918380737,
+  "query_membership_failures": 0,
+  "model_disagreements": 0,
+  "numerical_mask_disagreements": 0,
+  "max_frozen_score_error": 1.0764730035361936e-05,
+  "platform": "Windows-11-10.0.26200-SP0",
+  "python": "3.14.3",
+  "versions": {
+    "numpy": "2.5.2",
+    "pandas": "3.0.3",
+    "scipy": "1.18.0",
+    "scikit-learn": "1.9.0"
+  }
+}

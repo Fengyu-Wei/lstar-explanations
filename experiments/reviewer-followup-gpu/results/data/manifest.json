@@ -1,0 +1,156 @@
+[
+  {
+    "dataset": "iris",
+    "n": 100,
+    "d": 4,
+    "classes": [
+      "1",
+      "2"
+    ],
+    "missing": 0,
+    "sha256": "6659f60ece14c472da6294a32e45d19d445b73be9098ed5ddf367e4cf42263df"
+  },
+  {
+    "dataset": "wine",
+    "n": 130,
+    "d": 13,
+    "classes": [
+      "0",
+      "1"
+    ],
+    "missing": 0,
+    "sha256": "79f3a6f088f6c9721c8352c7b4b669a06354fb8c34abcc008993965f76c38e78"
+  },
+  {
+    "dataset": "breast_cancer",
+    "n": 569,
+    "d": 30,
+    "classes": [
+      "0",
+      "1"
+    ],
+    "missing": 0,
+    "sha256": "25e2eb7b7a8745b1bde5ba18bc4969983d2e2f403291ecd5bde4a29ef30c3859"
+  },
+  {
+    "dataset": "digits-35",
+    "n": 365,
+    "d": 64,
+    "classes": [
+      "5",
+      "3"
+    ],
+    "missing": 0,
+    "sha256": "0ad8df2270e9e5bc8d70b4fd84d420b5986389ca16bcf4ca2db3cb6d12cfb744"
+  },
+  {
+    "dataset": "synthetic_d8",
+    "n": 500,
+    "d": 8,
+    "classes": [
+      "1",
+      "0"
+    ],
+    "missing": 0,
+    "sha256": "0dc88bbec77dcf836b715e113076c608e02ba7e1d63f48423ae37c4d301658b9"
+  },
+  {
+    "dataset": "synthetic_d20",
+    "n": 800,
+    "d": 20,
+    "classes": [
+      "0",
+      "1"
+    ],
+    "missing": 0,
+    "sha256": "d911c90dc4b6eed581b32567ca5f3e1f05fa5b7f972d1b1c9506cf9d572e017a"
+  },
+  {
+    "dataset": "synthetic_d50",
+    "n": 1000,
+    "d": 50,
+    "classes": [
+      "0",
+      "1"
+    ],
+    "missing": 0,
+    "sha256": "9bae383eab51b85783db8e5ee38fc641d2d58016b7bf9d229f76da9c0708d1d0"
+  },
+  {
+    "dataset": "synthetic_lowsep",
+    "n": 800,
+    "d": 10,
+    "classes": [
+      "1",
+      "0"
+    ],
+    "missing": 0,
+    "sha256": "712a69aed3274dac53c8a24958edff85df33542f06d533ca0f46bc8e136d50b2"
+  },
+  {
+    "dataset": "banknote",
+    "n": 1372,
+    "d": 4,
+    "classes": [
+      "2",
+      "1"
+    ],
+    "missing": 0,
+    "sha256": "5bb852ebe3f5f88fd08a61c5a43630e28c4a7797ce0d3e3549f44b359ac91675"
+  },
+  {
+    "dataset": "blood",
+    "n": 748,
+    "d": 4,
+    "classes": [
+      "2",
+      "1"
+    ],
+    "missing": 0,
+    "sha256": "6c90709c4fa86854e4a47e508e0f5f7a8c4e9b696909cca7e4027b1c0f7b9c48"
+  },
+  {
+    "dataset": "diabetes",
+    "n": 768,
+    "d": 8,
+    "classes": [
+      "tested_positive",
+      "tested_negative"
+    ],
+    "missing": 0,
+    "sha256": "f3c0f00ad7709bcdde382a05679652bc4b95a4cf5b07fa91a2efa95c836db05e"
+  },
+  {
+    "dataset": "ionosphere",
+    "n": 351,
+    "d": 34,
+    "classes": [
+      "b",
+      "g"
+    ],
+    "missing": 0,
+    "sha256": "125d63088635dcac1f60359346624f85570da4cbebf3ce686d5983efe039b382"
+  },
+  {
+    "dataset": "sonar",
+    "n": 208,
+    "d": 60,
+    "classes": [
+      "Rock",
+      "Mine"
+    ],
+    "missing": 0,
+    "sha256": "22798d2a6815854213331c4fd44f0442959067869ef0ddeb1b2f97b01070975c"
+  },
+  {
+    "dataset": "internet-ads",
+    "n": 3279,
+    "d": 1558,
+    "classes": [
+      "ad",
+      "noad"
+    ],
+    "missing": 0,
+    "sha256": "4de1ca3265cd4209a6d5a3f536407ce42afcecaa2b5e1e248522f2c00b431d44"
+  }
+]

@@ -1,0 +1,449 @@
+[
+  {
+    "dataset": "breast_cancer",
+    "seed": 0,
+    "depth": 8,
+    "query_index": 8,
+    "class": 0,
+    "full_length": 3,
+    "true_label": 0,
+    "features": {
+      "mean radius": 13.0,
+      "mean texture": 21.81999969482422,
+      "mean perimeter": 87.5,
+      "mean area": 519.7999877929688,
+      "mean smoothness": 0.12729999423027039,
+      "mean compactness": 0.1932000070810318,
+      "mean concavity": 0.1859000027179718,
+      "mean concave points": 0.09352999925613403,
+      "mean symmetry": 0.23499999940395355,
+      "mean fractal dimension": 0.07389000058174133,
+      "radius error": 0.30630001425743103,
+      "texture error": 1.0019999742507935,
+      "perimeter error": 2.4059998989105225,
+      "area error": 24.31999969482422,
+      "smoothness error": 0.0057310000993311405,
+      "compactness error": 0.035020001232624054,
+      "concavity error": 0.03553000092506409,
+      "concave points error": 0.012260000221431255,
+      "symmetry error": 0.02143000066280365,
+      "fractal dimension error": 0.003748999908566475,
+      "worst radius": 15.489999771118164,
+      "worst texture": 30.729999542236328,
+      "worst perimeter": 106.19999694824219,
+      "worst area": 739.2999877929688,
+      "worst smoothness": 0.17030000686645508,
+      "worst compactness": 0.5400999784469604,
+      "worst concavity": 0.5389999747276306,
+      "worst concave points": 0.20600000023841858,
+      "worst symmetry": 0.43779999017715454,
+      "worst fractal dimension": 0.10719999670982361
+    },
+    "rules": {
+      "full_path": {
+        "rule": [
+          [
+            "worst radius",
+            "<=",
+            17.039999961853027
+          ],
+          [
+            "worst concave points",
+            ">",
+            0.1423499956727028
+          ],
+          [
+            "mean concave points",
+            ">",
+            0.056004999205470085
+          ]
+        ],
+        "ref_count": 5,
+        "ref_success": 5,
+        "coverage": 0.035211267605633804,
+        "precision": 1.0,
+        "evaluable": 1,
+        "below_target": 0,
+        "length": 3
+      },
+      "pure_prefix": {
+        "rule": [
+          [
+            "worst radius",
+            "<=",
+            17.039999961853027
+          ],
+          [
+            "worst concave points",
+            ">",
+            0.1423499956727028
+          ],
+          [
+            "mean concave points",
+            ">",
+            0.056004999205470085
+          ]
+        ],
+        "ref_count": 5,
+        "ref_success": 5,
+        "coverage": 0.035211267605633804,
+        "precision": 1.0,
+        "evaluable": 1,
+        "below_target": 0,
+        "length": 3
+      },
+      "exact_delete": {
+        "rule": [
+          [
+            "worst radius",
+            "<=",
+            17.039999961853027
+          ],
+          [
+            "worst concave points",
+            ">",
+            0.1423499956727028
+          ],
+          [
+            "mean concave points",
+            ">",
+            0.056004999205470085
+          ]
+        ],
+        "ref_count": 5,
+        "ref_success": 5,
+        "coverage": 0.035211267605633804,
+        "precision": 1.0,
+        "evaluable": 1,
+        "below_target": 0,
+        "length": 3
+      },
+      "empirical_prefix": {
+        "rule": [
+          [
+            "worst radius",
+            "<=",
+            17.039999961853027
+          ],
+          [
+            "worst concave points",
+            ">",
+            0.1423499956727028
+          ],
+          [
+            "mean concave points",
+            ">",
+            0.056004999205470085
+          ]
+        ],
+        "ref_count": 5,
+        "ref_success": 5,
+        "coverage": 0.035211267605633804,
+        "precision": 1.0,
+        "evaluable": 1,
+        "below_target": 0,
+        "length": 3
+      },
+      "empirical_delete": {
+        "rule": [
+          [
+            "worst concave points",
+            ">",
+            0.1423499956727028
+          ],
+          [
+            "mean concave points",
+            ">",
+            0.056004999205470085
+          ]
+        ],
+        "ref_count": 43,
+        "ref_success": 43,
+        "coverage": 0.3028169014084507,
+        "precision": 1.0,
+        "evaluable": 1,
+        "below_target": 0,
+        "length": 2
+      },
+      "certified_prefix": {
+        "rule": [
+          [
+            "worst radius",
+            "<=",
+            17.039999961853027
+          ],
+          [
+            "worst concave points",
+            ">",
+            0.1423499956727028
+          ],
+          [
+            "mean concave points",
+            ">",
+            0.056004999205470085
+          ]
+        ],
+        "ref_count": 5,
+        "ref_success": 5,
+        "coverage": 0.035211267605633804,
+        "precision": 1.0,
+        "evaluable": 1,
+        "below_target": 0,
+        "length": 3
+      },
+      "constant": {
+        "rule": [],
+        "ref_count": 142,
+        "ref_success": 53,
+        "coverage": 1.0,
+        "precision": 0.3732394366197183,
+        "evaluable": 1,
+        "below_target": 1,
+        "length": 0
+      }
+    }
+  },
+  {
+    "dataset": "banknote",
+    "seed": 0,
+    "depth": 8,
+    "query_index": 283,
+    "class": 1,
+    "full_length": 7,
+    "true_label": 1,
+    "features": {
+      "variance": 0.322299987077713,
+      "skewness": -0.8980799913406372,
+      "curtosis": 8.088299751281738,
+      "entropy": 0.6922199726104736
+    },
+    "rules": {
+      "full_path": {
+        "rule": [
+          [
+            "variance",
+            ">",
+            0.2974049896001816
+          ],
+          [
+            "curtosis",
+            ">",
+            -4.443400144577026
+          ],
+          [
+            "variance",
+            "<=",
+            1.566100001335144
+          ],
+          [
+            "curtosis",
+            ">",
+            -1.7387999892234802
+          ],
+          [
+            "entropy",
+            "<=",
+            0.8286399841308594
+          ],
+          [
+            "entropy",
+            ">",
+            0.27325499802827835
+          ],
+          [
+            "curtosis",
+            ">",
+            0.23875004053115845
+          ]
+        ],
+        "ref_count": 2,
+        "ref_success": 2,
+        "coverage": 0.0058309037900874635,
+        "precision": 1.0,
+        "evaluable": 1,
+        "below_target": 0,
+        "length": 7
+      },
+      "pure_prefix": {
+        "rule": [
+          [
+            "variance",
+            ">",
+            0.2974049896001816
+          ],
+          [
+            "curtosis",
+            ">",
+            -4.443400144577026
+          ],
+          [
+            "variance",
+            "<=",
+            1.566100001335144
+          ],
+          [
+            "curtosis",
+            ">",
+            -1.7387999892234802
+          ],
+          [
+            "entropy",
+            "<=",
+            0.8286399841308594
+          ],
+          [
+            "entropy",
+            ">",
+            0.27325499802827835
+          ],
+          [
+            "curtosis",
+            ">",
+            0.23875004053115845
+          ]
+        ],
+        "ref_count": 2,
+        "ref_success": 2,
+        "coverage": 0.0058309037900874635,
+        "precision": 1.0,
+        "evaluable": 1,
+        "below_target": 0,
+        "length": 7
+      },
+      "exact_delete": {
+        "rule": [
+          [
+            "variance",
+            ">",
+            0.2974049896001816
+          ],
+          [
+            "entropy",
+            "<=",
+            0.8286399841308594
+          ],
+          [
+            "curtosis",
+            ">",
+            0.23875004053115845
+          ]
+        ],
+        "ref_count": 74,
+        "ref_success": 74,
+        "coverage": 0.21574344023323616,
+        "precision": 1.0,
+        "evaluable": 1,
+        "below_target": 0,
+        "length": 3
+      },
+      "empirical_prefix": {
+        "rule": [
+          [
+            "variance",
+            ">",
+            0.2974049896001816
+          ],
+          [
+            "curtosis",
+            ">",
+            -4.443400144577026
+          ],
+          [
+            "variance",
+            "<=",
+            1.566100001335144
+          ],
+          [
+            "curtosis",
+            ">",
+            -1.7387999892234802
+          ]
+        ],
+        "ref_count": 40,
+        "ref_success": 36,
+        "coverage": 0.11661807580174927,
+        "precision": 0.9,
+        "evaluable": 1,
+        "below_target": 1,
+        "length": 4
+      },
+      "empirical_delete": {
+        "rule": [
+          [
+            "variance",
+            ">",
+            0.2974049896001816
+          ],
+          [
+            "curtosis",
+            ">",
+            0.23875004053115845
+          ]
+        ],
+        "ref_count": 91,
+        "ref_success": 89,
+        "coverage": 0.2653061224489796,
+        "precision": 0.978021978021978,
+        "evaluable": 1,
+        "below_target": 0,
+        "length": 2
+      },
+      "certified_prefix": {
+        "rule": [
+          [
+            "variance",
+            ">",
+            0.2974049896001816
+          ],
+          [
+            "curtosis",
+            ">",
+            -4.443400144577026
+          ],
+          [
+            "variance",
+            "<=",
+            1.566100001335144
+          ],
+          [
+            "curtosis",
+            ">",
+            -1.7387999892234802
+          ],
+          [
+            "entropy",
+            "<=",
+            0.8286399841308594
+          ],
+          [
+            "entropy",
+            ">",
+            0.27325499802827835
+          ],
+          [
+            "curtosis",
+            ">",
+            0.23875004053115845
+          ]
+        ],
+        "ref_count": 2,
+        "ref_success": 2,
+        "coverage": 0.0058309037900874635,
+        "precision": 1.0,
+        "evaluable": 1,
+        "below_target": 0,
+        "length": 7
+      },
+      "constant": {
+        "rule": [],
+        "ref_count": 343,
+        "ref_success": 193,
+        "coverage": 1.0,
+        "precision": 0.5626822157434402,
+        "evaluable": 1,
+        "below_target": 1,
+        "length": 0
+      }
+    }
+  }
+]

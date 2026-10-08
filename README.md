@@ -1,124 +1,219 @@
-# Faithful Explanations — reproducibility artifact
+# Faithful Explanations
 
-Code, result tables and figures for
+Reproducibility artifact for **A Unified Logical Framework for Faithful
+Explanations: Translation and Projection across Tree, Linear, and Neural Models**,
+Fengyu Wei and Di Zhang, manuscript prepared for *Knowledge-Based Systems*.
 
-> **A Unified Logical Framework for Faithful Explanations: Translation and Projection of Linear and Tree Models**
-> F. Wei, D. Zhang — submitted to *Knowledge-Based Systems*
-
-This repository holds exactly what is needed to reproduce the paper's experimental section: the five scripts that produce its numbers and figures, the ten result tables they are read from, and the two result figures themselves. Every experimental number quoted in the paper is taken from `results/`.
+This package contains the current independent-pool experiments and the post-review
+GPU audits, synchronized with the local manuscript on **2026-10-08**. Reference
+results are included so they can be inspected without training or downloading data.
+The earlier exploratory artifact is retained in [legacy/](legacy/README.md).
 
 ## Layout
 
+```text
+src/                         current experiments, analysis and verification
+data/                        dataset identity, split indices and display names
+experiments/
+  heldout-utility/            independent tree-rule benchmark and Anchors
+  crossmodel-robustness/      independent tree, linear and ReLU comparisons
+  exact-projection-audit/     complete projection validation
+  matched-subset-audit/       minimum path-subset controls
+  reviewer-followup-gpu/      mass budget, localization and representation audits
+figures/                     three current experimental figures, PDF and PNG
+legacy/                      historical code, tables and figures
+requirements*.txt            CPU, tabular Anchors and CUDA dependencies
+reference-sha256.json         reference-data and figure checksums
 ```
-code/             analysis scripts (Python)
-results/          archived CSV tables — the reference outputs
-figures/          the two result figures (PNG, 150 dpi)
-requirements.txt  pinned environment
+
+Each experiment contains its dated protocol and final `results/` tables. Logs,
+Python environments, downloaded datasets, private editing notes, LaTeX caches and
+manuscript-rewriting scripts are excluded. The framework overview (Fig. 1) is a
+separate manuscript illustration; this package contains the experimental figures.
+
+## Quick verification: no extra dependencies or GPU
+
+From the repository root:
+
+```sh
+python src/verify_artifact.py
 ```
 
-## Environment
+This standard-library-only command checks reference checksums, four-way split
+disjointness, method/query pairing, exact-region agreement, the GPU input hashes
+and recorded numerical cross-checks. It reads the archived evidence without
+changing it. It does not retrain models or prove formal statements.
 
-Python 3.14.
+## Install the recorded CPU environment
 
+The reference CPU runs used Python **3.14.3**. Create a virtual environment and
+install the pinned versions:
+
+```sh
+python -m venv .venv
 ```
-pip install -r requirements.txt
+
+Activate it with `.venv\Scripts\Activate.ps1` in Windows PowerShell or
+`source .venv/bin/activate` on Linux/macOS, then run:
+
+```sh
+python -m pip install -r requirements.txt
+python -m pip install --no-deps -r requirements-anchors.txt
 ```
 
-The recorded runs used numpy 2.5.2, pandas 3.0.3, scikit-learn 1.9.0, matplotlib 3.11.0 and scipy 1.18.0.
+The second command matches the tabular-only Anchors setup used in the recorded
+run. Its NumPy/SciPy/scikit-learn dependencies come from `requirements.txt`; spaCy
+and image-LIME dependencies are unused by these scripts. This installation is not
+intended to support every optional feature of the upstream Anchors/LIME packages.
 
-## Datasets
+## Reproduce the CPU experiments
 
-Fourteen binary datasets are used in the tree and linear studies. The ReLU study uses thirteen of them — the same set without the 1558-dimensional `climate` snapshot — plus `heart` and `vehicle`, for fifteen in total. The `n`, `d` and `H` columns below are read from `results/faithfulness_cv_results.csv` and `results/mlp_scaled_summary.csv`.
+Run from the repository root, in a **separate checkout or copy**: the experiment
+commands overwrite that copy's result tables, and timing fields vary by machine.
 
-| dataset | source | identifier | n | d | H |
-| --- | --- | --- | --- | --- | --- |
-| iris | scikit-learn `load_iris` | — | 100 | 4 | 0.927 |
-| wine | scikit-learn `load_wine` | — | 130 | 13 | 0.943 |
-| breast_cancer | scikit-learn `load_breast_cancer` | — | 569 | 30 | 0.916 |
-| digits-35 | scikit-learn `load_digits`, classes {3, 5} | — | 365 | 64 | 0.979 |
-| synthetic_d8 | `make_classification`, `random_state=42` | — | 500 | 8 | 0.877 |
-| synthetic_d20 | `make_classification`, `random_state=1` | — | 800 | 20 | 0.777 |
-| synthetic_d50 | `make_classification`, `random_state=2` | — | 1000 | 50 | 0.770 |
-| synthetic_lowsep | `make_classification`, `random_state=3` | — | 800 | 10 | 0.755 |
-| banknote | UCI *banknote-authentication* | OpenML `data_id=1462` | 1372 | 4 | 0.933 |
-| blood | UCI *blood-transfusion-service-center* | OpenML `data_id=1464` | 748 | 4 | 0.731 |
-| diabetes | UCI *Pima Indians diabetes* | OpenML `data_id=37` | 768 | 8 | 0.667 |
-| ionosphere | UCI *ionosphere* | OpenML `data_id=59` | 351 | 34 | 0.850 |
-| sonar | UCI *sonar* | OpenML `data_id=40` | 208 | 60 | 0.749 |
-| climate | UCI *climate-model-simulation-crashes* | OpenML `data_id=40978` | 3279 | 1558 | 0.953 |
-| heart | UCI *heart-statlog* | OpenML `data_id=53` | 270 | 13 | 0.766 |
-| vehicle | UCI *vehicle silhouettes* | OpenML `data_id=54` | 435 | 18 | 0.872 |
+```sh
+python src/validate_rules.py
+python src/utility_experiment.py
+python src/utility_experiment.py --mode anchor
+python src/crossmodel_replication.py
+python src/exact_projection_audit.py
+python src/matched_subset_audit.py
+python src/analyze_results.py
+python src/analyze_results.py --crossmodel
+```
 
-The identifiers are declared in `_OPENML_IDS` ([`code/faithfulness_cv_experiment.py`](code/faithfulness_cv_experiment.py)) and `EXTRA_OPENML` ([`code/mlp_gatepath_experiment.py`](code/mlp_gatepath_experiment.py)). They are fetched through scikit-learn, so the OpenML copy is what the runs saw; the UCI originals are named for provenance only.
+`matched_subset_audit.py` requires the Anchors query identifiers;
+`analyze_results.py` requires completed main and Anchors results. Numerical
+comparisons should use scientific metrics and the recorded environments, rather
+than byte equality of timing-bearing regenerated CSVs. The checksum manifest
+identifies the supplied reference snapshot; it is not updated automatically.
 
-**Preprocessing.** Every dataset passes through one shared path, `to_binary()`:
+To recompute statistics from existing CSVs without fitting models, run only the
+two `analyze_results.py` commands in a copy. Their figures are written into the
+corresponding experiment's `results/` directory. The supplied publication copies
+are in `figures/`.
 
-1. non-finite entries are replaced by zero — some OpenML tables carry missing values;
-2. the target is reduced to its two most frequent classes, so every dataset is binary;
-3. features are standardized with `StandardScaler`.
+## Reproduce the GPU follow-up
 
-Two dataset-specific notes:
+Use a separate environment on an NVIDIA CUDA-compatible GPU:
 
-- `digits-35` is `load_digits` binarized to classes {3, 5} (183 + 182 = 365 samples). The literal {0, 1} pair holds only 360, so the two most frequent classes are used instead — uniformly for every dataset, not as a special case.
-- OpenML `data_id=40978` fetches a wider repeated-measure table: after preprocessing it yields the n = 3279, d = 1558 snapshot recorded in the tables. The "(2 classes, 20 features)" text shipped with the raw OpenML description no longer matches the fetched layout, which is why the identifier — not that description — is recorded here.
+```sh
+python -m venv .venv-gpu
+```
 
-The four synthetic sets are generated in-process with fixed `random_state` values, so they need no download.
+Activate this environment as above, then install dependencies **sequentially**:
 
-## Protocol
+```sh
+python -m pip install -r requirements.txt
+python -m pip install -r requirements-gpu.txt
+python src/gpu_followup_audit.py
+```
 
-All three studies share one protocol.
+The GPU requirements replace NumPy 2.5.2 with **2.5.3**, matching the recorded GPU
+run. The reference hardware was an RTX 4060 Laptop GPU with CuPy 14.0.1. Actual
+device, driver/runtime versions, precision and random seed are recorded in
+[runtime.json](experiments/reviewer-followup-gpu/results/runtime.json).
 
-- **Seed.** `np.random.seed(42)` at module level, and `random_state=42` on every estimator (`KMeans`, `StratifiedKFold`, `DecisionTreeClassifier`, `LogisticRegression`, `MLPClassifier`). Confidence intervals use 2000 bootstrap resamples with seed 42.
-- **Cross-validation.** `StratifiedKFold(shuffle=True, random_state=42)` with `n_splits = max(2, min(5, smallest class count))` — five folds unless a class is too small to support them.
-- **Homogeneity.** `H = 0.7 * kNN + 0.3 * cluster`, where kNN consistency is the mean agreement of a point with its 5 nearest neighbours and cluster is the mean KMeans purity over 5 clusters.
-- **Faithfulness.** For a test input `x`, model `M` and pool `P` of real points, the first `k` conditions of `x`'s rule define a region; `faithful_k(x)` is the fraction of that region on which the full model agrees with its prediction at `x`:
+The GPU command requires the existing results from all four CPU experiment
+families; these are already included. CART is reconstructed on CPU with the same
+scikit-learn algorithm. CUDA float64 performs region counting and 5,000-resample
+hierarchical bootstrap aggregation, while neural controls reuse fixed-fit records.
+The command requires a real GPU and rejects CPU fallback. Compiler caches stay in
+the ignored `.cache/` directory within this package.
 
-  ```
-  faithful_k(x) = |{x' in P : x' satisfies the first k conditions, M(x') = M(x)}|
-                  --------------------------------------------------------------
-                          |{x' in P : x' satisfies the first k conditions}|
-  ```
+Generate the GPU audit figure from cached tables, with CPU dependencies only:
 
-  `P` is the **training fold**, never uniformly sampled boxes: the off-manifold points such a box produces in high dimension were the flaw of the earlier single-split prototype.
-- **Study settings.** The tree study evaluates depths 2–8, samples up to 30 test points per fold, and requires a minimum region cover of 5 points. The linear study ranks features locally by `|w_i x_i|` and, as a robustness check, globally by `|w_i|`. The ReLU study ranks gates by `|d(logit)/d z_gate|` at `x`.
+```sh
+python src/plot_followup_audit.py
+```
 
-## Scripts
+It writes `figures/compression-budget-audit.pdf` and `.png`. No script needs an
+external manuscript directory or a machine-specific Python path.
 
-| script | study | writes |
+## Evidence and manuscript mapping
+
+| Experiment | Main evidence | Manuscript topic |
 | --- | --- | --- |
-| [`code/faithfulness_cv_experiment.py`](code/faithfulness_cv_experiment.py) | **trees** — 14 datasets, depths 2–8 | `faithfulness_cv_results.csv`, `faithfulness_cv_stats.csv`, `faithfulness_vs_k_cv.csv` |
-| [`code/linear_faithfulness_experiment.py`](code/linear_faithfulness_experiment.py) | **linear** — logistic regression on the same 14 datasets | `linear_faithfulness_results.csv`, `linear_faithfulness_coef_results.csv`, `linear_faithfulness_stats.csv`, `linear_faithfulness_coef_stats.csv` |
-| [`code/mlp_gatepath_experiment.py`](code/mlp_gatepath_experiment.py) | **ReLU** — architectures 16x16, 32x16, 128x64, 128x64x32 on 15 datasets | `mlp_scaled_summary.csv`, `mlp_scaled_curves.csv`, `mlp_scaled_stats.csv` |
-| [`code/unified_figures.py`](code/unified_figures.py) | the paper's two result figures, drawing on all three studies | `cross_model_H.png`, `shortening_vs_k.png` |
-| [`code/xai_framework.py`](code/xai_framework.py) | the `L*` formula algebra, the tree and linear translators, and the axiom tests | — (imported by the scripts above) |
+| [heldout-utility](experiments/heldout-utility/protocol.md) | `queries.csv`, `fits.csv`, `anchors.csv`, `summary_ci.csv`, `paired_differences.csv`, `cases.json` | Independent shortening utility, Anchors, target/count sensitivity and audit cases |
+| [crossmodel-robustness](experiments/crossmodel-robustness/protocol.md) | `queries.csv`, `fits.csv`, `summary_ci.csv`, `convergence.csv`, `converged_summary.csv` | Independent cross-model precision, coverage and evaluability |
+| [exact-projection-audit](experiments/exact-projection-audit/protocol.md) | `queries.csv`, `summary.csv`, `diagnostics.json` | Complete paths, linear half-spaces and frozen ReLU cells |
+| [matched-subset-audit](experiments/matched-subset-audit/protocol.md) | `queries.csv`, `summary.csv` | Minimum exact and empirical path-literal subsets |
+| [reviewer-followup-gpu](experiments/reviewer-followup-gpu/protocol.md) | `prefixes.csv`, `siblings.csv`, `localization.csv`, `budget_controls_ci.csv`, `neural_regions_ci.csv`, `matched_reliability_ci.csv`, `matched_leave_one_out.csv` | Expansion budget, independent sibling localization, region representation and matched reliability uncertainty |
 
-The three experiment scripts also save the single-study PNGs they plot; only the two merged figures are used in the paper, and only those two are archived here.
+Current experimental figures:
 
-`unified_figures.py` reads only the cached CSV tables — no network is refitted — and asserts each correlation it draws against the corresponding stats CSV, so the figure cannot drift away from the numbers in the text.
+- `figures/independent-utility.pdf`: length, reference coverage and target misses.
+- `figures/compression-budget-audit.pdf`: budget conservatism and sibling losses.
+- `figures/independent-crossmodel.pdf`: precision and evaluability during shortening.
 
-## Reproducing
+All three also have PNG previews. The supplied PDFs match the local manuscript's
+experimental figures at packaging time.
 
-```
-pip install -r requirements.txt
+## Data and final protocol
 
-cd results
-python ../code/faithfulness_cv_experiment.py
-python ../code/linear_faithfulness_experiment.py
-python ../code/mlp_gatepath_experiment.py
-cd ..
-python code/unified_figures.py
-```
+The current benchmark has **14 binary tasks**: iris, wine, breast_cancer, digits-35,
+synthetic_d8, synthetic_d20, synthetic_d50, synthetic_lowsep, banknote, blood,
+diabetes, ionosphere, sonar and internet-ads. The six OpenML identifiers are
+declared in `src/utility_experiment.py`: 1462, 1464, 37, 59, 40 and 40978.
+`digits-35` retains digits 3 and 5; other multiclass datasets retain their two
+most frequent classes. Raw datasets are loaded from scikit-learn's cache or
+downloaded on first use. Download failure raises an error instead of substituting
+or silently skipping a task. Raw data are not redistributed in this repository.
 
-The three experiment scripts write their CSV and PNG outputs to the **current working directory**, which is why they are run from `results/`; the archived tables in `results/` are exactly what they produce there. `unified_figures.py` is the exception — it resolves every path from its own location, so it can be run from anywhere.
+For each task, the tree benchmark uses ten seeds and depths 4/8: **280 fits,
+4,800 queries and 33,600 method/query records**. Draw the 20% calibration pool
+uniformly before inspecting labels, then stratify the remaining pools to obtain
+50% fitting, 25% reference and 5% query fractions. Randomly cap queries at 20.
+Median imputation and model-specific scaling are fitted only on the fitting pool.
+The 140 split records are in `data/splits.json`; `data/manifest.json` records
+dataset hashes, sizes and binary label mappings.
 
-**One caveat when running the figure script:** its `save()` writes each figure twice — into `figures/` and into a `../paper/KBS/` tree that belongs to the manuscript, which is not part of this repository. That second write raises `FileNotFoundError` unless you create the directory or drop that path from `save()`. The figures already in `figures/` are the released copies and are unaffected.
+Anchors uses seven preselected tasks, three seeds and five randomly selected
+queries per task/seed, totaling **105 queries**, with an eight-predicate budget.
+Its native perturbation precision is reported separately from agreement on the
+shared unperturbed reference pool.
 
-The OpenML datasets download on first use into scikit-learn's cache; `climate` is by far the largest (d = 1558).
+Cross-model and complete-projection audits use **205 fits** (70 trees, 70 linear
+models and 65 ReLU networks). Neural Internet-Advertisements is excluded a priori.
+All convergence warnings remain in the tables. Complete projections are checked on
+3,500 queries; the GPU neural controls reuse the same 65 networks and 1,100 queries.
 
-## License
+Protocols were amended after inspecting pilot outputs. Read the
+[amendment](experiments/heldout-utility/protocol-amendment.md) alongside the original
+protocol: its uniform calibration and randomized query selection supersede the
+original stratified-calibration/first-query wording. Superseded pilot tables are
+not included in the current reference results. The GPU protocol explicitly records
+prior access to results; it is a post-review analysis, not original preregistration.
 
-Released under the [MIT License](LICENSE). This covers the contents of this repository — the scripts, the result tables and the figures as stored here. The published article itself carries the publisher's terms.
+## Interpretation and provenance
 
-## Citing
+Precision means agreement with the fitted classifier, not ground-truth accuracy.
+Zero-support precision is missing, with evaluability reported separately. Exact
+deletion is an established sufficient, subset-minimal path-literal comparator;
+bounded exhaustive controls are not scalable unrestricted AXp solvers. Calibration
+mass-budget acceptance is not a population certificate. Sibling localization is
+conditional on eligible candidates and independent disagreement. Full class
+predicates are semantic controls, not concise human-readable rules. Matched
+minimum-rule reliability differences are heterogeneous and statistically
+inconclusive. Coverage and literal count measure computational utility, without
+establishing human understanding or deployment value.
 
-If you use this artifact, please cite the paper above. The release is tagged `v1.0.0`.
+During packaging, reference numerical tables and figures were copied without
+recomputation. Code changes remove external workspace dependencies and keep output
+paths within the package; historical exploratory results remain in `legacy/`.
+The original recorded GPU input hashes are preserved, including their Windows path
+separators; the verifier resolves them portably. Runtime and validation records
+describe the original runs, rather than a fresh run on the reader's computer.
+
+Packaging validation on 2026-10-08 used a standalone copy and the recorded local
+environments. It passed all 119 reference checksums, a deliberately corrupted-file
+negative control, the 416-subset exact verifier, cached CPU interval regeneration,
+current/historical plotting and a real GPU follow-up rerun. Regenerated GPU summary
+metrics and intervals matched the reference within 1e-12; the supplied reference
+files remained unchanged. This was a packaging check, not a new experimental design.
+
+## License and citation
+
+The repository code is released under the [MIT License](LICENSE). Upstream
+dependencies and datasets retain their respective terms. Cite the manuscript
+title and authors above; no acceptance, DOI or new release tag is claimed here.

@@ -2,3 +2,12 @@ __pycache__/
 *.py[cod]
 .DS_Store
 Thumbs.db
+.venv/
+.venv-gpu/
+.cache/
+vendor/
+build/
+dist/
+*.log
+*.tmp
+*.zip

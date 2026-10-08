@@ -1,0 +1,11 @@
+{
+  "seconds": 17.599087476730347,
+  "python": "3.14.3 (tags/v3.14.3:323c59a, Feb  3 2026, 16:04:56) [MSC v.1944 64 bit (AMD64)]",
+  "versions": {
+    "numpy": "2.5.2",
+    "pandas": "3.0.3",
+    "scipy": "1.18.0",
+    "scikit-learn": "1.9.0",
+    "matplotlib": "3.11.0"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "seconds": 19.45721510000294,
+  "platform": "Windows-11-10.0.26200-SP0",
+  "python": "3.14.3 (tags/v3.14.3:323c59a, Feb  3 2026, 16:04:56) [MSC v.1944 64 bit (AMD64)]",
+  "versions": {
+    "cupy-cuda12x": "14.0.1",
+    "numpy": "2.5.3",
+    "pandas": "3.0.3",
+    "scipy": "1.18.0",
+    "scikit-learn": "1.9.0"
+  },
+  "device": "NVIDIA GeForce RTX 4060 Laptop GPU",
+  "cuda_runtime": 12090,
+  "cuda_driver": 12050,
+  "bootstrap_resamples": 5000,
+  "rng_seed": 20261007,
+  "execution": "CUDA float64 region evaluation and bootstrap; original CART reconstructed on CPU; neural controls reuse fixed-fit records"
+}

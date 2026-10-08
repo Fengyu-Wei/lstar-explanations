@@ -1,0 +1,4 @@
+# Install AFTER requirements.txt using --no-deps (tabular Anchors only).
+# spaCy and image-LIME dependencies are not used by this benchmark.
+anchor-exp==0.0.2.0
+lime==0.2.0.1
