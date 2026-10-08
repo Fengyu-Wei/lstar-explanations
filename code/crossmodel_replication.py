@@ -13,7 +13,7 @@ from sklearn.cluster import KMeans
 from threadpoolctl import threadpool_limits
 from utility_experiment import ROOT,datasets,split_data,TreeRules,mask
 
-OUT=ROOT/'experiments/crossmodel-robustness/results'; OUT.mkdir(parents=True,exist_ok=True)
+OUT=ROOT/'results/crossmodel-robustness/results'; OUT.mkdir(parents=True,exist_ok=True)
 
 def homogeneity(X,y):
     ids=NearestNeighbors(n_neighbors=6).fit(X).kneighbors(X,return_distance=False)

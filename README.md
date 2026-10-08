@@ -11,36 +11,35 @@ results are included so they can be inspected without training or downloading da
 ## Layout
 
 ```text
-src/                         current experiments, analysis and verification
+code/                         current experiments, analysis and verification
 data/                        dataset identity, split indices and display names
-experiments/
+results/
   heldout-utility/            independent tree-rule benchmark and Anchors
   crossmodel-robustness/      independent tree, linear and ReLU comparisons
   exact-projection-audit/     complete projection validation
   matched-subset-audit/       minimum path-subset controls
   reviewer-followup-gpu/      mass budget, localization and representation audits
-figures/                     three current experimental figures, PDF and PNG
 requirements.txt             shared CPU dependencies; optional installs below
 reference-sha256.json         reference-data and figure checksums
 ```
 
 Each experiment contains its dated protocol and final `results/` tables. Logs,
 Python environments, downloaded datasets, private editing notes, LaTeX caches and
-manuscript-rewriting scripts are excluded. The framework overview (Fig. 1) is a
-separate manuscript illustration; this package contains the experimental figures.
+manuscript-rewriting scripts are excluded. The package contains code and reference
+results; plotting commands below regenerate figures from those results.
 
 ## Code and results
 
 | Directory | Role |
 | --- | --- |
-| `src/` | Code that generates and analyzes the current experimental results |
-| `experiments/` | Current protocols and final results used by the KBS manuscript |
+| `code/` | Code that generates and analyzes the current experimental results |
+| `results/` | Current protocols and final results used by the KBS manuscript |
 
 The current experiments use separate fit, calibration, reference and query pools,
 fit-only preprocessing, compression controls and independent audits.
 
-To reproduce the current paper, use `src/` and `experiments/`. The current scripts
-read their required results from `experiments/`. The GPU follow-up depends on the
+To reproduce the current paper, use `code/` and `results/`. The current scripts
+read their required results from `results/`. The GPU follow-up depends on the
 four current CPU result families.
 
 ## Quick verification: no extra dependencies or GPU
@@ -48,7 +47,7 @@ four current CPU result families.
 From the repository root:
 
 ```sh
-python src/verify_artifact.py
+python code/verify_artifact.py
 ```
 
 This standard-library-only command checks reference checksums, four-way split
@@ -56,7 +55,7 @@ disjointness, method/query pairing, exact-region agreement, the GPU input hashes
 and recorded numerical cross-checks. It reads the archived evidence without
 changing it. It does not retrain models or prove formal statements.
 `reference-sha256.json` stores file fingerprints for checking that the supplied
-reference data and figures are intact.
+reference data and statistical outputs are intact.
 
 ## Install the recorded CPU environment
 
@@ -91,14 +90,14 @@ Run from the repository root, in a **separate checkout or copy**: the experiment
 commands overwrite that copy's result tables, and timing fields vary by machine.
 
 ```sh
-python src/validate_rules.py
-python src/utility_experiment.py
-python src/utility_experiment.py --mode anchor
-python src/crossmodel_replication.py
-python src/exact_projection_audit.py
-python src/matched_subset_audit.py
-python src/analyze_results.py
-python src/analyze_results.py --crossmodel
+python code/validate_rules.py
+python code/utility_experiment.py
+python code/utility_experiment.py --mode anchor
+python code/crossmodel_replication.py
+python code/exact_projection_audit.py
+python code/matched_subset_audit.py
+python code/analyze_results.py
+python code/analyze_results.py --crossmodel
 ```
 
 `matched_subset_audit.py` requires the Anchors query identifiers;
@@ -109,8 +108,7 @@ identifies the supplied reference snapshot; it is not updated automatically.
 
 To recompute statistics from existing CSVs without fitting models, run only the
 two `analyze_results.py` commands in a copy. Their figures are written into the
-corresponding experiment's `results/` directory. The supplied publication copies
-are in `figures/`.
+corresponding study's `results/` directory.
 
 ## Reproduce the GPU follow-up
 
@@ -125,13 +123,13 @@ Activate this environment as above, then install dependencies **sequentially**:
 ```sh
 python -m pip install -r requirements.txt
 python -m pip install numpy==2.5.3 cupy-cuda12x==14.0.1 nvidia-cuda-runtime-cu12==12.4.127 nvidia-cuda-nvrtc-cu12==12.4.127 nvidia-cublas-cu12==12.4.5.8
-python src/gpu_followup_audit.py
+python code/gpu_followup_audit.py
 ```
 
 The optional GPU installation replaces NumPy 2.5.2 with **2.5.3**, matching the recorded GPU
 run. The reference hardware was an RTX 4060 Laptop GPU with CuPy 14.0.1. Actual
 device, driver/runtime versions, precision and random seed are recorded in
-[runtime.json](experiments/reviewer-followup-gpu/results/runtime.json).
+[runtime.json](results/reviewer-followup-gpu/results/runtime.json).
 
 The GPU command requires the existing results from all four CPU experiment
 families; these are already included. CART is reconstructed on CPU with the same
@@ -143,37 +141,29 @@ the ignored `.cache/` directory within this package.
 Generate the GPU audit figure from cached tables, with CPU dependencies only:
 
 ```sh
-python src/plot_followup_audit.py
+python code/plot_followup_audit.py
 ```
 
-It writes `figures/compression-budget-audit.pdf` and `.png`. No script needs an
+It writes `compression-budget-audit.pdf` and `.png` under
+`results/reviewer-followup-gpu/results/`. No script needs an
 external manuscript directory or a machine-specific Python path.
 
 ## Evidence and manuscript mapping
 
 | Experiment | Main evidence | Manuscript topic |
 | --- | --- | --- |
-| [heldout-utility](experiments/heldout-utility/protocol.md) | `queries.csv`, `fits.csv`, `anchors.csv`, `summary_ci.csv`, `paired_differences.csv`, `cases.json` | Independent shortening utility, Anchors, target/count sensitivity and audit cases |
-| [crossmodel-robustness](experiments/crossmodel-robustness/protocol.md) | `queries.csv`, `fits.csv`, `summary_ci.csv`, `convergence.csv`, `converged_summary.csv` | Independent cross-model precision, coverage and evaluability |
-| [exact-projection-audit](experiments/exact-projection-audit/protocol.md) | `queries.csv`, `summary.csv`, `diagnostics.json` | Complete paths, linear half-spaces and frozen ReLU cells |
-| [matched-subset-audit](experiments/matched-subset-audit/protocol.md) | `queries.csv`, `summary.csv` | Minimum exact and empirical path-literal subsets |
-| [reviewer-followup-gpu](experiments/reviewer-followup-gpu/protocol.md) | `prefixes.csv`, `siblings.csv`, `localization.csv`, `budget_controls_ci.csv`, `neural_regions_ci.csv`, `matched_reliability_ci.csv`, `matched_leave_one_out.csv` | Expansion budget, independent sibling localization, region representation and matched reliability uncertainty |
-
-Current experimental figures:
-
-- `figures/independent-utility.pdf`: length, reference coverage and target misses.
-- `figures/compression-budget-audit.pdf`: budget conservatism and sibling losses.
-- `figures/independent-crossmodel.pdf`: precision and evaluability during shortening.
-
-All three also have PNG previews. The supplied PDFs match the local manuscript's
-experimental figures at packaging time.
+| [heldout-utility](results/heldout-utility/protocol.md) | `queries.csv`, `fits.csv`, `anchors.csv`, `summary_ci.csv`, `paired_differences.csv`, `cases.json` | Independent shortening utility, Anchors, target/count sensitivity and audit cases |
+| [crossmodel-robustness](results/crossmodel-robustness/protocol.md) | `queries.csv`, `fits.csv`, `summary_ci.csv`, `convergence.csv`, `converged_summary.csv` | Independent cross-model precision, coverage and evaluability |
+| [exact-projection-audit](results/exact-projection-audit/protocol.md) | `queries.csv`, `summary.csv`, `diagnostics.json` | Complete paths, linear half-spaces and frozen ReLU cells |
+| [matched-subset-audit](results/matched-subset-audit/protocol.md) | `queries.csv`, `summary.csv` | Minimum exact and empirical path-literal subsets |
+| [reviewer-followup-gpu](results/reviewer-followup-gpu/protocol.md) | `prefixes.csv`, `siblings.csv`, `localization.csv`, `budget_controls_ci.csv`, `neural_regions_ci.csv`, `matched_reliability_ci.csv`, `matched_leave_one_out.csv` | Expansion budget, independent sibling localization, region representation and matched reliability uncertainty |
 
 ## Data and final protocol
 
 The current benchmark has **14 binary tasks**: iris, wine, breast_cancer, digits-35,
 synthetic_d8, synthetic_d20, synthetic_d50, synthetic_lowsep, banknote, blood,
 diabetes, ionosphere, sonar and internet-ads. The six OpenML identifiers are
-declared in `src/utility_experiment.py`: 1462, 1464, 37, 59, 40 and 40978.
+declared in `code/utility_experiment.py`: 1462, 1464, 37, 59, 40 and 40978.
 `digits-35` retains digits 3 and 5; other multiclass datasets retain their two
 most frequent classes. Raw datasets are loaded from scikit-learn's cache or
 downloaded on first use. Download failure raises an error instead of substituting
@@ -198,7 +188,7 @@ All convergence warnings remain in the tables. Complete projections are checked 
 3,500 queries; the GPU neural controls reuse the same 65 networks and 1,100 queries.
 
 Protocols were amended after inspecting pilot outputs. Read the
-[amendment](experiments/heldout-utility/protocol-amendment.md) alongside the original
+[amendment](results/heldout-utility/protocol-amendment.md) alongside the original
 protocol: its uniform calibration and randomized query selection supersede the
 original stratified-calibration/first-query wording. Superseded pilot tables are
 not included in the current reference results. The GPU protocol explicitly records
@@ -217,14 +207,15 @@ minimum-rule reliability differences are heterogeneous and statistically
 inconclusive. Coverage and literal count measure computational utility, without
 establishing human understanding or deployment value.
 
-During packaging, reference numerical tables and figures were copied without
+During packaging, reference numerical tables were copied without
 recomputation. Code changes remove external workspace dependencies and keep output
 paths within the package.
 The original recorded GPU input hashes are preserved, including their Windows path
-separators; the verifier resolves them portably. Runtime and validation records
+separators and original `experiments/` prefix; the verifier maps that prefix to
+`results/` when locating files. Runtime and validation records
 describe the original runs, rather than a fresh run on the reader's computer.
 
-Current verification covers 107 reference files. Packaging validation on 2026-10-08
+Current verification covers 101 reference files. Packaging validation on 2026-10-08
 used a standalone copy and the recorded local environments. It passed a deliberately
 corrupted-file negative control, the 416-subset exact verifier, cached CPU interval
 regeneration, experimental plotting and a real GPU follow-up rerun. Regenerated GPU

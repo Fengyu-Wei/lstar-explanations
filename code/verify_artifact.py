@@ -33,7 +33,11 @@ def number(value):
 
 
 def bounded_path(root, relative):
-    path = (root / relative.replace('\\', '/')).resolve()
+    normalized = relative.replace('\\', '/')
+    # Original GPU records retain the directory name used during that run.
+    if normalized.startswith('experiments/'):
+        normalized = 'results/' + normalized[len('experiments/'):]
+    path = (root / normalized).resolve()
     require(path.is_relative_to(root), f'Path outside artifact: {relative}')
     require(path.is_file(), f'Missing reference file: {relative}')
     return path
@@ -66,7 +70,7 @@ def verify(root):
                 f'Invalid index: {name}')
         require(0 < len(pools[3]) <= 20, f'Invalid query cap: {name}')
 
-    exp = root / 'experiments'
+    exp = root / 'results'
     main = exp / 'heldout-utility/results'
     tree = rows(main / 'queries.csv')
     fits = rows(main / 'fits.csv')

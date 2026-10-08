@@ -8,8 +8,8 @@ matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 
 ROOT=Path(__file__).resolve().parents[1]
-RESULT=ROOT/'experiments/reviewer-followup-gpu/results'
-FIG=ROOT/'figures'
+RESULT=ROOT/'results/reviewer-followup-gpu/results'
+FIG=RESULT
 FIG.mkdir(parents=True,exist_ok=True)
 COLORS=['#0072B2','#E69F00','#009E73','#CC79A7','#56B4E9','#D55E00','#777777']
 plt.rcParams.update({'font.family':'serif','font.serif':['Times New Roman','DejaVu Serif'],

@@ -12,7 +12,7 @@ import pandas as pd
 from sklearn.tree import DecisionTreeClassifier
 from utility_experiment import ROOT, OUT as OLD, datasets, split_data, TreeRules, mask, evaluate
 
-OUT = ROOT/'experiments/matched-subset-audit/results'
+OUT = ROOT/'results/matched-subset-audit/results'
 
 def run():
     OUT.mkdir(parents=True, exist_ok=True)

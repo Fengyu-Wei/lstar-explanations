@@ -17,7 +17,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.tree import DecisionTreeClassifier
 
 ROOT = Path(__file__).resolve().parents[1]
-OUT = ROOT / 'experiments/heldout-utility/results'
+OUT = ROOT / 'results/heldout-utility/results'
 IDS = {'banknote':1462, 'blood':1464, 'diabetes':37, 'ionosphere':59,
        'sonar':40, 'internet-ads':40978}
 ANCHOR_DATA = {'breast_cancer','banknote','blood','diabetes','wine','digits-35','sonar'}

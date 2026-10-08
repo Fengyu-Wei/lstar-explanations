@@ -113,7 +113,7 @@ def plot(summary,ds):
     ax.spines[['top','right']].set_visible(False);fig.savefig(OUT/'exact_reduction_by_dataset.pdf');fig.savefig(OUT/'exact_reduction_by_dataset.png',dpi=200);plt.close(fig)
 
 def crossmodel():
-    out=ROOT/'experiments/crossmodel-robustness/results'
+    out=ROOT/'results/crossmodel-robustness/results'
     d=pd.read_csv(out/'queries.csv');f=pd.read_csv(out/'fits.csv')
     assert len(f)==205
     d['fit_minus_reference']=d.fit_precision-d.precision

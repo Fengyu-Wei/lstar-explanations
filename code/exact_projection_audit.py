@@ -19,7 +19,7 @@ from threadpoolctl import threadpool_limits
 from utility_experiment import ROOT, datasets, split_data, TreeRules, mask
 from crossmodel_replication import forward
 
-OUT = ROOT / 'experiments/exact-projection-audit/results'
+OUT = ROOT / 'results/exact-projection-audit/results'
 
 def frozen_affine(x, model):
     """Explicit coefficient matrices, used to test the frozen construction."""

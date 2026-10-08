@@ -15,7 +15,7 @@ import tempfile
 import time
 
 ROOT = Path(__file__).resolve().parents[1]
-OUT = ROOT / 'experiments/reviewer-followup-gpu/results'
+OUT = ROOT / 'results/reviewer-followup-gpu/results'
 OUT.mkdir(parents=True, exist_ok=True)
 TMP = ROOT / '.cache/cuda-temp'
 TMP.mkdir(parents=True, exist_ok=True)
@@ -29,7 +29,7 @@ from sklearn.tree import DecisionTreeClassifier
 from threadpoolctl import threadpool_limits
 import utility_experiment as utility
 
-OLD = ROOT / 'experiments/heldout-utility/results'
+OLD = ROOT / 'results/heldout-utility/results'
 KEY = ['dataset', 'seed', 'depth', 'query_index']
 B = 5000
 RNG_SEED = 20261007
@@ -260,9 +260,9 @@ def tree_audit():
 
 
 def neural_controls():
-    full=pd.read_csv(ROOT/'experiments/exact-projection-audit/results/queries.csv')
+    full=pd.read_csv(ROOT/'results/exact-projection-audit/results/queries.csv')
     full=full[full.model=='relu']
-    partial=pd.read_csv(ROOT/'experiments/crossmodel-robustness/results/queries.csv')
+    partial=pd.read_csv(ROOT/'results/crossmodel-robustness/results/queries.csv')
     partial=partial[partial.model=='relu']
     keys=['dataset','seed','query_index']
     base=partial[partial.k==32].merge(full,on=keys,suffixes=('_gate','_full'),validate='one_to_one')
@@ -306,7 +306,7 @@ def neural_controls():
 
 def matched_uncertainty():
     greedy=pd.read_csv(OLD/'queries.csv'); greedy=greedy[greedy.method=='empirical_delete']
-    minimum=pd.read_csv(ROOT/'experiments/matched-subset-audit/results/queries.csv')
+    minimum=pd.read_csv(ROOT/'results/matched-subset-audit/results/queries.csv')
     minimum=minimum[minimum.method=='minimum_empirical_subset']
     pairs=minimum.merge(greedy,on=KEY,suffixes=('_minimum','_greedy'),validate='one_to_one')
     assert len(pairs)==105
@@ -332,9 +332,9 @@ def matched_uncertainty():
 def main():
     inputs=[OLD/'paired_curves.csv',OLD/'queries.csv',OLD/'fits.csv',OLD/'cases.json',
             ROOT/'data/manifest.json', ROOT/'data/splits.json',
-            ROOT/'experiments/crossmodel-robustness/results/queries.csv',
-            ROOT/'experiments/exact-projection-audit/results/queries.csv',
-            ROOT/'experiments/matched-subset-audit/results/queries.csv']
+            ROOT/'results/crossmodel-robustness/results/queries.csv',
+            ROOT/'results/exact-projection-audit/results/queries.csv',
+            ROOT/'results/matched-subset-audit/results/queries.csv']
     hashes={str(p.relative_to(ROOT)):hashlib.sha256(p.read_bytes()).hexdigest() for p in inputs}
     assert cp.cuda.runtime.getDeviceCount()>0, 'GPU required; no silent CPU fallback'
     # Trigger a real CUDA computation before any experiment, failing early if unusable.
